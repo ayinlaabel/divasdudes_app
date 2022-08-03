@@ -1,0 +1,16 @@
+export const Colors = {
+  brand: 'red',
+  defaultColor: '#fff',
+  dark: '#444',
+  lightDark: '#ededed',
+  semiDark: '#c9c9c9',
+  borderDark: '#9c9c9c',
+  inactive: '#748c94',
+  inactiveSuccess: '#97f0d5',
+  successBg: '#d1e7dd',
+  successBorder: '#badbcc',
+  successText: '#0f5132',
+  warning: '#f7b24a',
+  warningBorder: '#fc9800',
+  darnger: '#f5c2c7',
+};
