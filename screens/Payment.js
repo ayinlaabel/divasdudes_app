@@ -9,6 +9,8 @@ import {
   DefaultInput,
   DefaultInputContainer,
   DefaultInputLabel,
+  DisableInput,
+  DisableText,
   PaymentForm,
   PaymentHeader,
   PaymentHeaderText,
@@ -26,8 +28,9 @@ import { Colors } from '../components/colors';
 import { data, savingsData } from '../components/data';
 import { useSelector } from 'react-redux';
 import { selectToken, selectUser } from '../slices/navSlice';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useNavigation } from '@react-navigation/native';
+import Banks from '../components/Banks';
 
 const { borderDark, semiDark, dark } = Colors;
 
@@ -38,9 +41,10 @@ const Payment = () => {
   const [note, setNote] = useState('');
   const user = useSelector(selectUser);
   const token = useSelector(selectToken);
+  const [accountName, setAccountName] = useState('');
   const data = savingsData;
 
-  const baseUrl = 'https://thedivasdudecore.herokuapp.com/v1/payment/savings';
+  const baseUrl = 'https://thedivasdudecore.herokuapp.com/v1/';
 
   const headers = {
     headers: {
@@ -56,7 +60,7 @@ const Payment = () => {
         <PaymentHeaderText>Payment</PaymentHeaderText>
       </PaymentHeader>
       <Formik
-        initialValues={{ amount: '', note: '' }}
+        initialValues={{ amount: '', note: '', accountNumber: '' }}
         onSubmit={(values) => {
           setVisible(true);
           setAmount(values.amount);
@@ -106,6 +110,63 @@ const Payment = () => {
                     value={props.values.note}
                   />
                 </DefaultInputContainer>
+              )}
+              {type === 'Transfer' && (
+                <>
+                  <DefaultInputContainer>
+                    <DefaultInputLabel>Account Number</DefaultInputLabel>
+                    <DefaultInput
+                      keyboardType="numeric"
+                      numberOfLines={4}
+                      placeholder="Account Number"
+                      onBlur={() => {
+                        const accountDetails = {
+                          account_number: props.values.accountNumber,
+                          account_bank: '044',
+                        };
+                        axios
+                          .post(
+                            baseUrl + 'payment/account-verification',
+                            accountDetails,
+                          )
+                          .then((account) => {
+                            const data = account.data.data;
+                            if (data === null) {
+                              setAccountName('');
+                            } else {
+                              setAccountName(data.account_name);
+                            }
+                          })
+                          .catch((err) => console.log(err));
+                        // .then((account) => {
+                        //   console.log(account.data);
+                        // });
+                        // console.log(account);
+                      }}
+                      onChangeText={props.handleChange('accountNumber')}
+                      value={props.values.accountNumber}
+                    />
+                  </DefaultInputContainer>
+                  <DefaultInputContainer>
+                    {/* <Banks /> */}
+                  </DefaultInputContainer>
+                  <DefaultInputContainer>
+                    <DefaultInputLabel>Account Name</DefaultInputLabel>
+                    <DisableInput>
+                      <DisableText>{accountName}</DisableText>
+                    </DisableInput>
+                  </DefaultInputContainer>
+                  <DefaultInputContainer>
+                    <DefaultInputLabel>Add Note</DefaultInputLabel>
+                    <DefaultInput
+                      multiline={true}
+                      numberOfLines={4}
+                      placeholder="Add note"
+                      onChangeText={props.handleChange('note')}
+                      value={props.values.note}
+                    />
+                  </DefaultInputContainer>
+                </>
               )}
             </PaymentForm>
             <DefaultButtonContainer m="0 20px">

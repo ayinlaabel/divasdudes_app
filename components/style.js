@@ -109,6 +109,20 @@ export const DefaultInput = styled.TextInput`
   padding: 10px;
 `;
 
+export const DisableInput = styled.View`
+  max-width: 100%;
+  height: 50px;
+  background-color: ${semiDark};
+  border: 1px solid ${borderDark};
+  border-radius: 4px;
+  padding: 10px;
+`;
+
+export const DisableText = styled.Text`
+  font-family: Poppins;
+  font-size: 17px;
+`;
+
 export const SymbolContainer = styled.View`
   max-width: 270px;
   height: 50px;
@@ -648,4 +662,10 @@ export const AlertMessageContainer = styled.View`
   width: 100%;
   background-color: ${defaultColor};
   border-radius: 4px;
+`;
+
+export const AlertIcon = styled.View`
+  height: 70px;
+  width: 70px;
+  border-radius: 50px;
 `;

@@ -1,3 +1,3 @@
 export const data = {};
 
-export const savingsData = ['Savings', 'Trasfer'];
+export const savingsData = ['Savings', 'Transfer'];
