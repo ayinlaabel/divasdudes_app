@@ -669,3 +669,123 @@ export const AlertIcon = styled.View`
   width: 70px;
   border-radius: 50px;
 `;
+
+export const FlatListContainer = styled.View`
+  margin: 10px 0px;
+  border: 1px solid ${borderDark};
+  border-radius: 4px;
+  ${(props) =>
+    !props.data
+      ? `
+      max-height: 50px;
+      `
+      : ` 
+      margin: 5px 0px;
+      width: 100%;
+      max-height: 200px;
+      height: 100px;
+      background-color: #fff;
+      `}
+`;
+
+export const ListContainer = styled.View`
+  display: flex;
+  border: 1px solid ${borderDark};
+  border-radius: 4px;
+  ${(props) =>
+    !props.data
+      ? `
+      max-height: 50px;
+      `
+      : ` 
+      margin: 5px 0px;
+      width: 100%;
+      height: 900px;
+      height: 100px;
+      background-color: #fff;
+      `}
+`;
+
+export const ListItem = styled.TouchableOpacity`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+`;
+
+export const ListItemText = styled.Text`
+  font-size: 17px;
+  color: #ababab;
+`;
+
+export const BankInputContainer = styled.View`
+  position: relative;
+  margin: 10px 0;
+  height: 100%;
+`;
+
+export const BankContainer = styled(BankInputContainer)`
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  background-color: white;
+  padding-top: 30px;
+`;
+
+export const BankInput = styled.TouchableOpacity`
+  font-family: Poppins;
+  font-size: 17px;
+  max-width: 100%;
+  height: 50px;
+  background-color: ${semiDark};
+  border: 1px solid ${borderDark};
+  border-radius: 4px;
+  padding: 10px;
+`;
+
+export const BankItem = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  padding: 0 10px;
+  margin: 0 10px;
+`;
+
+export const BankText = styled.Text`
+  font-size: 18px;
+  color: ${dark};
+`;
+
+export const Divider = styled.View`
+  width: 100%;
+  height: 1px;
+  background-color: #d6d6d6;
+`;
+
+export const BankImage = styled.Image`
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+`;
+
+export const CloseButtonContainer = styled.TouchableOpacity`
+  position: absolute;
+  right: 10px;
+  margin: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+`;
+
+export const BankImageContainer = styled.View`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  margin-right: 15px;
+`;

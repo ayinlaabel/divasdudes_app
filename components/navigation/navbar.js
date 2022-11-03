@@ -8,6 +8,7 @@ import { Text, View } from 'react-native';
 import { Icon } from '@rneui/themed';
 import { IsNavbar, NavbarLabel } from '../style';
 import { Colors } from '../colors';
+import Banks from '../../screens/Banks';
 
 const { brand, inactive } = Colors;
 const Tab = createBottomTabNavigator();
